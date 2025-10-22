@@ -16,13 +16,9 @@ export function ProductsContainer({ query }) {
     return <div>Loading...</div>;
   }
 
-  const handleClick = () => {
-    console.log('Køb registreret!');
-  };
-
   const renderedProducts = data.map((product) => {
     // console.log(product.imageUrl)
-    const { name, imageUrl, teaser, price } = product;
+    const { name, imageUrl, teaser, price, stock } = product;
 
     return (
       <div className="product-card" key={name}>
@@ -30,12 +26,17 @@ export function ProductsContainer({ query }) {
         <h2>{name}</h2>
         <p>{teaser}</p>
         <p>
-          Price: <b>${price}</b>
+          Price: <b>{parseInt(price).toFixed(2).replace('.', ',')}</b>
         </p>
-        <button onClick={handleClick}>Add to cart</button>
+        {stock > 0 ? <p className="text-green-600">På lager</p> : <p className="text-red-600">Ikke på lager</p>}
       </div>
     );
   });
 
-  return <section className="product-container">{renderedProducts}</section>;
+  return (
+    <section id="mainview">
+      <h2>Produkterne</h2>
+      <div className="product-container">{renderedProducts}</div>
+    </section>
+  );
 }
