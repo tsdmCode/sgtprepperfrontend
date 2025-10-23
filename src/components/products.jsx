@@ -10,7 +10,7 @@ export function ProductsContainer({ query }) {
       .catch((error) => console.error(error));
   }, [query]);
 
-  //   console.log(data);
+  //console.log(data);
 
   if (!data) {
     return <div>Loading...</div>;
@@ -22,21 +22,40 @@ export function ProductsContainer({ query }) {
 
     return (
       <div className="product-card" key={name}>
-        <img src={'http://localhost:4000' + imageUrl} alt="" />
+        <img src={'http://localhost:4000' + imageUrl} alt="Produktet" />
         <h2>{name}</h2>
         <p>{teaser}</p>
         <p>
-          Price: <b>{parseInt(price).toFixed(2).replace('.', ',')}</b>
+          <b>{parseInt(price).toFixed(2).replace('.', ',')}</b> DKK
         </p>
         {stock > 0 ? <p className="text-green-600">På lager</p> : <p className="text-red-600">Ikke på lager</p>}
       </div>
     );
   });
 
+  // .product-card {
+  //   background-color: #88898850;
+  //   padding: 1rem;
+  //   display: flex;
+  //   flex-direction: column;
+  //   border-radius: 25px;
+  // }
+
+  // .product-card img {
+  //   align-self: center;
+  //   width: 30%;
+  //   height: 30%;
+  // }
+
   return (
     <section id="mainview">
-      <h2>Produkterne</h2>
-      <div className="product-container">{renderedProducts}</div>
+      <h2 className="text-4xl font-bold">Produkterne</h2>
+      <div className="flex-col gap-4">{renderedProducts}</div>
     </section>
   );
 }
+// .product-container {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 2rem;
+// }

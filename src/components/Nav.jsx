@@ -30,14 +30,14 @@ export function Nav({ setQuery }) {
   };
 
   const renderedCategories = categories.map((category) => (
-    <li onClick={() => updateSearch(category.slug)} key={category.slug}>
+    <li className="p-1" onClick={() => updateSearch(category.slug)} key={category.slug}>
       {category.title}
     </li>
   ));
 
   return (
-    <nav>
-      <ul>{renderedCategories}</ul>
+    <nav className="bg-[#64758B] text-white">
+      <ul className="flex gap-5 justify-center items-center">{renderedCategories}</ul>
     </nav>
   );
 }

@@ -2,6 +2,8 @@ import './App.css';
 import { Header } from './components/Header';
 import { Nav } from './components/Nav';
 import { ProductsContainer } from './components/products';
+import { LoginBar } from './components/LoginBar';
+import { Footer } from './components/Footer';
 import { useState } from 'react';
 
 function App() {
@@ -9,9 +11,11 @@ function App() {
 
   return (
     <>
+      <LoginBar />
       <Nav setQuery={setQuery} />
       <Header />
       <ProductsContainer query={query} />
+      <Footer />
     </>
   );
 }

@@ -1,25 +1,21 @@
+@import 'tailwindcss';
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
+  /* padding: 2rem; */
   text-align: center;
 }
-
+/* 
 nav ul {
   display: flex;
   justify-content: center;
   gap: 1rem;
   list-style: none;
-}
+} */
 
 nav ul li {
   cursor: pointer;
-}
-
-.product-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
 }
 
 .product-card {
@@ -32,6 +28,6 @@ nav ul li {
 
 .product-card img {
   align-self: center;
-  width: 50%;
-  height: 50%;
+  width: 30%;
+  height: 30%;
 }
