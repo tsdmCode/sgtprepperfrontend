@@ -10,8 +10,6 @@ export function ProductsContainer({ query }) {
       .catch((error) => console.error(error));
   }, [query]);
 
-  //console.log(data);
-
   if (!data) {
     return <div>Loading...</div>;
   }
@@ -21,41 +19,28 @@ export function ProductsContainer({ query }) {
     const { name, imageUrl, teaser, price, stock } = product;
 
     return (
-      <div className="product-card" key={name}>
-        <img src={'http://localhost:4000' + imageUrl} alt="Produktet" />
-        <h2>{name}</h2>
-        <p>{teaser}</p>
-        <p>
-          <b>{parseInt(price).toFixed(2).replace('.', ',')}</b> DKK
-        </p>
-        {stock > 0 ? <p className="text-green-600">På lager</p> : <p className="text-red-600">Ikke på lager</p>}
+      <div className="flex shadow-gray-500 text-left p-2 rounded-xl" key={name}>
+        <div className="flex">
+          <img className="self-center w-1/5 h-xs" src={'http://localhost:4000' + imageUrl} alt="Produktet" />
+          <div className="text-left items-center">
+            <h2 className="font-bold">{name}</h2>
+            <p>{teaser}</p>
+          </div>
+        </div>
+        <div className="flex flex-col flex-nowrap text-nowrap self-end">
+          {stock > 0 ? <p className="text-green-600">På lager</p> : <p className="text-red-600">Ikke på lager</p>}
+          <p>
+            <b>{parseInt(price).toFixed(2).replace('.', ',')}</b> DKK
+          </p>
+        </div>
       </div>
     );
   });
 
-  // .product-card {
-  //   background-color: #88898850;
-  //   padding: 1rem;
-  //   display: flex;
-  //   flex-direction: column;
-  //   border-radius: 25px;
-  // }
-
-  // .product-card img {
-  //   align-self: center;
-  //   width: 30%;
-  //   height: 30%;
-  // }
-
   return (
-    <section id="mainview">
-      <h2 className="text-4xl font-bold">Produkterne</h2>
-      <div className="flex-col gap-4">{renderedProducts}</div>
+    <section className="flex flex-col items-center">
+      <h2 className="text-4xl m-2 self-start font-bold">Produkterne</h2>
+      <div className="w-1/2 flex flex-col items-center justify-center gap-4">{renderedProducts}</div>
     </section>
   );
 }
-// .product-container {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 2rem;
-// }

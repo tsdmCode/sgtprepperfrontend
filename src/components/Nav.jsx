@@ -36,7 +36,7 @@ export function Nav({ setQuery }) {
   ));
 
   return (
-    <nav className="bg-[#64758B] text-white">
+    <nav className="bg-[#64758B] p-2 text-white">
       <ul className="flex gap-5 justify-center items-center">{renderedCategories}</ul>
     </nav>
   );
