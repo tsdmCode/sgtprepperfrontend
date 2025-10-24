@@ -1,7 +1,7 @@
 export function Header() {
   return (
     <div>
-      <h1 className="font-['Poppins'] text-left">Velkommen til Sgt. Prepper</h1>
+      <h1 className="font-['Poppins'] rounded text-left">Velkommen til Sgt. Prepper</h1>
       <article className="flex text-left">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem ratione, iste earum sapiente quidem aut
