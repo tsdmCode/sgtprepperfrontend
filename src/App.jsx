@@ -1,22 +1,21 @@
 import './App.css';
-import { Header } from './components/Header';
 import { Nav } from './components/Nav';
-import { ProductsContainer } from './components/products';
+import { ProductsContainer } from './components/ProductsContainer';
 import { LoginBar } from './components/LoginBar';
 import { Footer } from './components/Footer';
 import { useState } from 'react';
 import { Hero } from './components/Hero';
+import { LandingPage } from './components/LandingPage';
 
 function App() {
-  const [query, setQuery] = useState('http://localhost:4000/api/products/vand-og-vandrensning');
+  const [query, setQuery] = useState('');
 
   return (
     <>
       <LoginBar />
       <Nav setQuery={setQuery} />
       <Hero />
-      <Header />
-      <ProductsContainer query={query} />
+      {query ? <ProductsContainer query={query} /> : <LandingPage />}
       <Footer />
     </>
   );
