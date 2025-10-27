@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export function Nav({ setQuery }) {
+export function Nav({ setQuery, setPageState }) {
   const [categories, setCategories] = useState(null);
   const [error, setError] = useState(null);
 
@@ -27,6 +27,7 @@ export function Nav({ setQuery }) {
   const updateSearch = (slug) => {
     const url = `http://localhost:4000/api/products/${slug}`;
     setQuery(url);
+    setPageState('products');
   };
 
   const renderedCategories = categories.map((category) => (

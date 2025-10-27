@@ -9,13 +9,15 @@ import { LandingPage } from './components/LandingPage';
 
 function App() {
   const [query, setQuery] = useState('');
+  const [pageState, setPageState] = useState('landing');
 
   return (
     <>
       <LoginBar />
-      <Nav setQuery={setQuery} />
+      <Nav setQuery={setQuery} setPageState={setPageState} />
       <Hero />
-      {query ? <ProductsContainer query={query} /> : <LandingPage />}
+      {pageState === 'landing' && <LandingPage />}
+      {pageState === 'products' && <ProductsContainer query={query} />}
       <Footer />
     </>
   );
