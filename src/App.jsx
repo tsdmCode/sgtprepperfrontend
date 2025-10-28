@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <LoginBar />
-      <Nav setQuery={setQuery} setPageState={setPageState} />
+      <Nav setQuery={setQuery} setPageState={setPageState} setSelectedProduct={setSelectedProduct} />
       <Hero />
       {pageState === 'landing' && <LandingPage setPageState={setPageState} />}
       {pageState === 'products' && (
