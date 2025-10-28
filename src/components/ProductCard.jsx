@@ -1,6 +1,16 @@
-export function ProductCard({ name, imageUrl, teaser, price, stock }) {
+// ...existing code...
+export function ProductCard({ name, imageUrl, teaser, price, stock, onClick, ...props }) {
   return (
-    <div className="flex shadow-lg min-h-60 shadow-gray-500 text-left p-2 rounded-xl">
+    <div
+      className="flex shadow-lg min-h-60 shadow-gray-500 text-left p-2 rounded-xl cursor-pointer"
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') onClick?.(e);
+      }}
+      {...props}
+    >
       <div className="flex min-h-40 py-2 gap-2">
         <img className="self-center w-32 h-32 object-cover" src={'http://localhost:4000' + imageUrl} alt="Produktet" />
         <div className="text-left items-center">
@@ -21,3 +31,4 @@ export function ProductCard({ name, imageUrl, teaser, price, stock }) {
     </div>
   );
 }
+// ...existing code...

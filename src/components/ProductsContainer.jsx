@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { ProductCard } from './ProductCard';
+import { ProductDetails } from './ProductDetails';
 
-export function ProductsContainer({ query }) {
+export function ProductsContainer({ query, setPageState, setSelectedProduct, selectedProduct }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -15,7 +16,30 @@ export function ProductsContainer({ query }) {
     return <div>Loading...</div>;
   }
 
-  const renderedProducts = data.map((product) => <ProductCard key={product.name} {...product} />);
+  if (selectedProduct !== null) {
+    return (
+      <ProductDetails
+        product={selectedProduct}
+        onBack={() => {
+          setSelectedProduct(null);
+          setPageState('landing');
+        }}
+      />
+    );
+  }
+
+  const renderedProducts = data.map((product) => (
+    <ProductCard
+      key={product.name}
+      {...product}
+      onClick={() => {
+        // console.log('clicked product', product);
+
+        setSelectedProduct(product.slug);
+        setPageState('detailed');
+      }}
+    />
+  ));
 
   return (
     <section className="flex flex-col items-center">

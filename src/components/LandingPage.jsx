@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Header } from './Header';
 import { ProductCard } from './ProductCard';
 
-export function LandingPage() {
+export function LandingPage({ setPageState }) {
   const [latest, setLatest] = useState(null);
 
   useEffect(() => {
@@ -18,7 +18,9 @@ export function LandingPage() {
 
   const sortedLatest = latest.sort(() => Math.random() - 0.5).slice(0, 5);
 
-  const renderedLatest = sortedLatest.map((product) => <ProductCard key={product.name} {...product} />);
+  const renderedLatest = sortedLatest.map((product) => (
+    <ProductCard key={product.name} {...product} onClick={() => setPageState('detailed')} />
+  ));
 
   return (
     <div>
