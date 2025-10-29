@@ -3,8 +3,9 @@ import { FaChevronLeft } from 'react-icons/fa';
 import parse from 'html-react-parser';
 
 export function ProductDetails({ product, onBack }) {
-  console.log(product);
+  //console.log(product);
   const [data, setData] = useState(null);
+  const [value, setValue] = useState(1);
 
   useEffect(() => {
     if (!product) {
@@ -25,12 +26,33 @@ export function ProductDetails({ product, onBack }) {
 
   if (!data) return <div>No product selected</div>;
 
+  const { name, imageUrl, slug, description, price, stock, createdAt } = data;
+
   const handleClick = () => {
-    console.log('YM');
+    //TODO: add to cart logic
+    const localData = localStorage.getItem('prepperdata');
+    const parsedData = localData ? JSON.parse(localData) : { items: [] };
+
+    const qty = Number(value) || 0;
+
+    const index = parsedData.items.findIndex((item) => item.name === name);
+
+    if (index > -1) {
+      parsedData.items[index].quantity += qty;
+    } else {
+      parsedData.items.push({ slug, quantity: qty });
+    }
+    setValue(1);
+    console.log(parsedData.items);
+    localStorage.setItem('prepperdata', JSON.stringify(parsedData));
   };
-  const { name, imageUrl, description, price, stock, createdAt } = data;
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center text-wrap">
       <button className="self-start m-5">
         <FaChevronLeft className="text-4xl shadow-md shadow-gray-500 m-2" onClick={onBack} />
       </button>
@@ -46,10 +68,18 @@ export function ProductDetails({ product, onBack }) {
           <p className="text-green-600 text-2xl">På lager</p>
         ) : (
           <p className="text-red-600 text-2xl">Ikke på lager</p>
-        )}{' '}
-        <button className="rounded-4xl text-white bg-[#17A34A] py-3 px-10" onClick={handleClick}>
-          Læg i kurv
-        </button>
+        )}
+        <div>
+          <input
+            onChange={handleChange}
+            className="border border-black text-right py-3 rounded-lg"
+            type="number"
+            value={value}
+          />
+          <button className="rounded-4xl text-white bg-[#17A34A] py-3 px-10" onClick={handleClick}>
+            Læg i kurv
+          </button>
+        </div>
       </div>
     </div>
   );
