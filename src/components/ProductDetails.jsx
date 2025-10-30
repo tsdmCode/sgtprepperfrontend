@@ -35,7 +35,7 @@ export function ProductDetails({ product, onBack }) {
 
     const qty = Number(value) || 0;
 
-    const index = parsedData.items.findIndex((item) => item.name === name);
+    const index = parsedData.items.findIndex((item) => item.slug === slug);
 
     if (index > -1) {
       parsedData.items[index].quantity += qty;
@@ -53,6 +53,7 @@ export function ProductDetails({ product, onBack }) {
 
   return (
     <div className="flex justify-center text-wrap">
+      <title>{name}</title>
       <button className="self-start m-5">
         <FaChevronLeft className="text-4xl shadow-md shadow-gray-500 m-2" onClick={onBack} />
       </button>

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Hero } from './components/Hero';
 import { LandingPage } from './components/LandingPage';
 import { ProductDetails } from './components/ProductDetails';
+import { Cart } from './components/Cart';
 
 function App() {
   const [query, setQuery] = useState('');
@@ -18,7 +19,8 @@ function App() {
       <LoginBar />
       <Nav setQuery={setQuery} setPageState={setPageState} setSelectedProduct={setSelectedProduct} />
       <Hero />
-      {pageState === 'landing' && <LandingPage setPageState={setPageState} />}
+      {/* {<Cart />} */}
+      {pageState === 'landing' && <LandingPage setSelectedProduct={setSelectedProduct} setPageState={setPageState} />}
       {pageState === 'products' && (
         <ProductsContainer
           setSelectedProduct={setSelectedProduct}
