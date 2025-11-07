@@ -6,6 +6,7 @@ import { LandingPage } from './components/LandingPage';
 import { ProductDetails } from './components/ProductDetails';
 import { Cart } from './components/Cart';
 import { FullHeader } from './components/FullHeader';
+import { CookieConsent } from './components/CookieConsent';
 
 function App() {
   const [query, setQuery] = useState('');
@@ -35,6 +36,7 @@ function App() {
         />
       )}
       <Footer />
+      <CookieConsent />
     </>
   );
 }
