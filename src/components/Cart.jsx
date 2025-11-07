@@ -23,7 +23,7 @@ export function Cart() {
             if (!res.ok) {
               return { slug: item.slug, name: 'Unknown', imageUrl: '', quantity: item.quantity };
             }
-            
+
             const prod = await res.json();
             console.log('prod:', prod);
             return { ...prod, quantity: item.quantity };
@@ -50,23 +50,32 @@ export function Cart() {
   if (loading) return <div>Loading cart…</div>;
   if (!items || items.length === 0) return <div>Cart is empty</div>;
 
+  const handleClick = () => {
+    localStorage.removeItem('prepperdata');
+  };
+
   return (
     <div>
-      {items.map((product) => (
-        <div className="flex items-center gap-4" key={product.id}>
-          <h2>
-            {product.quantity}X {product.name}
-          </h2>
-          {product.imageUrl && (
-            <img
-              className="h-16 w-16 object-cover"
-              src={'http://localhost:4000' + product.imageUrl}
-              alt={product.name}
-            />
-          )}
-          {product.price && <p>{product.quantity * product.price} DKK</p>}
-        </div>
-      ))}
+      <div className="flex flex-col justify-center">
+        {items.map((product) => (
+          <div className="flex justify-center items-start text-center gap-4 my-5" key={product.id}>
+            <h2>
+              {product.quantity}X {product.name}
+            </h2>
+            {product.imageUrl && (
+              <img
+                className="h-16 w-16 object-cover"
+                src={'http://localhost:4000' + product.imageUrl}
+                alt={product.name}
+              />
+            )}
+            {product.price && <p>{product.quantity * product.price} DKK</p>}
+          </div>
+        ))}
+      </div>
+      <button className="bg-green-500 text-white px-8 py-2 rounded-2xl" onClick={handleClick}>
+        Køb!
+      </button>
     </div>
   );
 }

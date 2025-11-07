@@ -1,13 +1,11 @@
 import './App.css';
-import { Nav } from './components/Nav';
 import { ProductsContainer } from './components/ProductsContainer';
-import { LoginBar } from './components/LoginBar';
 import { Footer } from './components/Footer';
 import { useState } from 'react';
-import { Hero } from './components/Hero';
 import { LandingPage } from './components/LandingPage';
 import { ProductDetails } from './components/ProductDetails';
 import { Cart } from './components/Cart';
+import { FullHeader } from './components/FullHeader';
 
 function App() {
   const [query, setQuery] = useState('');
@@ -16,10 +14,8 @@ function App() {
 
   return (
     <>
-      <LoginBar />
-      <Nav setQuery={setQuery} setPageState={setPageState} setSelectedProduct={setSelectedProduct} />
-      <Hero />
-      {/* {<Cart />} */}
+      <FullHeader setQuery={setQuery} setPageState={setPageState} setSelectedProduct={setSelectedProduct} />
+      {pageState === 'cart' && <Cart />}
       {pageState === 'landing' && <LandingPage setSelectedProduct={setSelectedProduct} setPageState={setPageState} />}
       {pageState === 'products' && (
         <ProductsContainer

@@ -1,8 +1,7 @@
-// ...existing code...
 export function ProductCard({ name, imageUrl, teaser, price, stock, onClick, ...props }) {
   return (
     <div
-      className="flex shadow-lg min-h-60 shadow-gray-500 text-left p-2 rounded-xl cursor-pointer"
+      className="flex w-200 flex-row justify-between flex-shrink-0 shadow-lg shadow-gray-500 text-left p-2 rounded-xl cursor-pointer"
       role="button"
       tabIndex={0}
       onClick={onClick}
@@ -11,24 +10,28 @@ export function ProductCard({ name, imageUrl, teaser, price, stock, onClick, ...
       }}
       {...props}
     >
-      <div className="flex min-h-40 py-2 gap-2">
-        <img className="self-center w-32 h-32 object-cover" src={'http://localhost:4000' + imageUrl} alt="Produktet" />
-        <div className="text-left items-center">
+      <div className="flex items-center gap-2 flex-1">
+        <img
+          className="self-center w-20 h-20 object-cover rounded"
+          src={'http://localhost:4000' + imageUrl}
+          alt="Produktet"
+        />
+        <div className="text-left">
           <h2 className="font-bold text-xl">{name}</h2>
-          <p>{teaser}</p>
+          <p className="text-sm">{teaser}</p>
         </div>
       </div>
-      <div className="flex flex-col flex-nowrap text-nowrap self-end">
+
+      <div className="flex flex-col items-end justify-between w-28">
         {stock > 0 ? (
           <p className="text-green-600 text-2xl">På lager</p>
         ) : (
           <p className="text-red-600 text-2xl">Ikke på lager</p>
         )}
-        <p className="text-4xl">
-          <b>{parseInt(price).toFixed(2).replace('.', ',')}</b> DKK
+        <p className="flex items-baseline text-4xl">
+          <b>{Number(price).toFixed(2).replace('.', ',')}</b> DKK
         </p>
       </div>
     </div>
   );
 }
-// ...existing code...

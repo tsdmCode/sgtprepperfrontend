@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 import parse from 'html-react-parser';
+import { useAuth } from '../context/AuthContext';
 
 export function ProductDetails({ product, onBack }) {
   //console.log(product);
   const [data, setData] = useState(null);
   const [value, setValue] = useState(1);
-
+  const { isAuthed } = useAuth();
   useEffect(() => {
     if (!product) {
       setData(null);
@@ -29,7 +30,10 @@ export function ProductDetails({ product, onBack }) {
   const { name, imageUrl, slug, description, price, stock, createdAt } = data;
 
   const handleClick = () => {
-    //TODO: add to cart logic
+    if (!isAuthed) {
+      alert('Du skal logge ind for at tilføje varer til kurven');
+      return;
+    }
     const localData = localStorage.getItem('prepperdata');
     const parsedData = localData ? JSON.parse(localData) : { items: [] };
 

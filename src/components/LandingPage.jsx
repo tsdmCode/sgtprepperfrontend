@@ -32,9 +32,9 @@ export function LandingPage({ setPageState, setSelectedProduct }) {
   return (
     <div>
       <Header />
-      <div>
-        <h2 className="text-left font-bold">Seneste Nyt</h2>
-        <div>{renderedLatest}</div>
+      <div className="flex flex-col items-center mt-[2rem]">
+        <h2 className="text-left font-bold text-xl">Seneste Nyt</h2>
+        <div className="">{renderedLatest}</div>
       </div>
     </div>
   );
