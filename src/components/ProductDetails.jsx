@@ -8,6 +8,7 @@ export function ProductDetails({ product, onBack }) {
   const [data, setData] = useState(null);
   const [value, setValue] = useState(1);
   const { isAuthed } = useAuth();
+
   useEffect(() => {
     if (!product) {
       setData(null);
