@@ -105,12 +105,12 @@ export function Cart() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Din indkøbskurv</h1>
+    <section className="max-w-4xl mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-6">Din indkøbskurv (FRI FRAGT!)</h1>
 
       <div className="bg-white rounded-lg shadow-md">
         {items.map((product) => (
-          <div className="flex items-center gap-4 p-4 border-b border-gray-200 hover:bg-gray-50" key={product.slug}>
+          <article className="flex items-center gap-4 p-4 border-b border-gray-200 hover:bg-gray-50" key={product.slug}>
             {product.imageUrl && (
               <img
                 className="h-20 w-20 object-cover rounded"
@@ -155,7 +155,7 @@ export function Cart() {
             >
               ✕
             </button>
-          </div>
+          </article>
         ))}
       </div>
 
@@ -180,6 +180,6 @@ export function Cart() {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
