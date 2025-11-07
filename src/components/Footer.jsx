@@ -92,7 +92,6 @@ Du har ret til at:
         </ul>
       </footer>
 
-      {/* Terms Dialog */}
       {showTerms && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
@@ -122,7 +121,6 @@ Du har ret til at:
         </div>
       )}
 
-      {/* Privacy Dialog */}
       {showPrivacy && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
